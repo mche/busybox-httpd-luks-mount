@@ -27,7 +27,11 @@ $ sudo cryptsetup luksClose /dev/mapper/myTest
 head -c 2048 /dev/urandom | base64 -w 0 | less
 ```
 
-### Вторая часть ключа передается в урл и получаем сборный ключ
+Указать в luks-key.sh урл сохраненной первой части ключа, например:
+
+`https://gist.githubusercontent.com/foo/3894cedc3997e3acd97470c63bf9ba4a/raw/key.txt`
+
+### Вторая часть ключа также генерируется и передается в урл, получаем сборный ключ
 
 ```
 $ head -c 512 /dev/urandom | base64 -w 0

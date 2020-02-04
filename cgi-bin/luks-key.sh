@@ -4,7 +4,7 @@
 #
 # первая часть сохранена в файл где-то в сети
 # head -c 2048 /dev/urandom | base64 -w 0 | less
-a1=( $(curl -L https://gist.githubusercontent.com/mche/3894cedc3997e3acd97470c63bf9ba4a/raw/key.txt 2>/dev/null | base64 -d | xxd -c 5 -p) )
+a1=( $(curl -L $key1URL 2>/dev/null | base64 -d | xxd -c 5 -p) )
 # вторая часть передается в урл http://host/cgi-bin/key.php?...  http://host/cgi-bin/mount.php?...
 # head -c 512 /dev/urandom | base64 -w 0 
 a2=( $(echo -n $QUERY_STRING | base64 -d | xxd -c 5 -p) )

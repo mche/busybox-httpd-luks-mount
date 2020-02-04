@@ -1,6 +1,8 @@
 #!/bin/sh
 
-bash $PWD/luks-key.sh | cryptsetup luksOpen /home/guest/luksTest.img myTest -d - 2>&1
+curl -s -L -H 'Cache-Control: nocache' $baseURL/luks-key.sh 2>/dev/null | bash | cryptsetup luksOpen /home/guest/luksTest.img myTest -d - 2>&1
+# или тут
+#bash $PWD/luks-key.sh | cryptsetup luksOpen /home/guest/luksTest.img myTest -d - 2>&1
 
 if [ $? -ne 0 ]; then
   exit;
