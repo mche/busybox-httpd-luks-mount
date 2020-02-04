@@ -1,11 +1,13 @@
 #!/bin/sh
 #
+# Запрос сборного ключа
+# 
 # sudo cryptsetup -s 512 luksFormat <device|file>
-#sudo  cryptsetup luksOpen /home/guest/luksTest.img myTest
+# sudo cryptsetup luksOpen /home/guest/luksTest.img myTest
 # sudo mkfs.ext4 -m 0  /dev/mapper/myTest
 # sudo cryptsetup luksClose /dev/mapper/myTest
 #
-# Добавление ключа
+# Добавление сборного ключа в раздел
 # head -c 512 /dev/urandom | base64 -w 0 
 # curl -vv -L 'http://127.0.0.1:8080/cgi-bin/key.php?<from prev line>' > enc5.key
 # sudo cryptsetup luksAddKey <device|file> enc5.key
