@@ -1,6 +1,8 @@
 #!/bin/sh
-export baseURL=https://gist.githubusercontent.com/mche/3894cedc3997e3acd97470c63bf9ba4a/raw
+
+export baseURL=https://raw.githubusercontent.com/mche/busybox-httpd-luks-mount/master/cgi-bin
 export key1URL=https://gist.githubusercontent.com/mche/3894cedc3997e3acd97470c63bf9ba4a/raw/key.txt
+
 echo "Content-type: text/html;charset=utf-8"
 echo ""
 echo "<html><head></head><body>"
