@@ -17,15 +17,20 @@ $ sudo mkfs.ext4 -m 0  /dev/mapper/myTest
 $ sudo cryptsetup luksClose /dev/mapper/myTest
 ```
 
-### Сохранение части ключа где-то в сети
+### Сохранение первой части ключа файлом где-то в сети
 
 ` head -c 2048 /dev/urandom | base64 -w 0 | less`
 
-### Добавление сборного ключа
+### Вторая часть ключа передается в урл
 
 ```
-$ head -c 512 /dev/urandom | base64 -w 0 
-$ curl -vv -L 'http://127.0.0.1:8080/cgi-bin/key.php?<from prev line>' > enc.key
-$ sudo cryptsetup luksAddKey luksTest.img enc.key
-$ shred enc.key
+$ head -c 512 /dev/urandom | base64 -w 0
+$ curl -vv -L 'http://127.0.0.1:8080/cgi-bin/key.php?<from prev line>'
+```
+
+### Добавление сборного ключа в LUKS
+
+```
+$ sudo su
+curl -s -L 'http://127.0.0.1:8080/cgi-bin/key.php?<from prev line>' | cryptsetup luksAddKey luksTest.img -
 ```
