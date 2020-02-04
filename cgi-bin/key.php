@@ -2,10 +2,7 @@
 #
 # Запрос сборного ключа
 # 
-# sudo cryptsetup -s 512 luksFormat <device|file>
-# sudo cryptsetup luksOpen /home/guest/luksTest.img myTest
-# sudo mkfs.ext4 -m 0  /dev/mapper/myTest
-# sudo cryptsetup luksClose /dev/mapper/myTest
+
 #
 # Добавление сборного ключа в раздел
 # head -c 512 /dev/urandom | base64 -w 0 
