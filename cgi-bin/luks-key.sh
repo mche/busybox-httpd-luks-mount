@@ -2,11 +2,6 @@
 #
 # ключ из двух частей
 #
-
-
-#echo -n $QUERY_STRING | base64 -d 2>&1 | xxd -c 5 -p 2>&1
-#exit;
-
 # первая часть сохранена в файл где-то в сети
 # head -c 2048 /dev/urandom | base64 -w 0 | less
 a1=( $(curl -L https://gist.githubusercontent.com/mche/3894cedc3997e3acd97470c63bf9ba4a/raw/key.txt 2>/dev/null | base64 -d | xxd -c 5 -p) )

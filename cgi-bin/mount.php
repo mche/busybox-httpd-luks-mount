@@ -1,6 +1,4 @@
 #!/bin/sh
-# echo $QUERY_STRING | cat - /home/guest/enc.key | ...
-# ( echo '...' ; gpg --export my@email.ru ) | cryptsetup -s 512 luksFormat luksTest.img -
 echo "Content-type: text/html;charset=utf-8"
 echo ""
 echo "<html><head></head><body>"
