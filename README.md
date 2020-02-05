@@ -38,7 +38,7 @@ $ sudo cryptsetup luksClose /dev/mapper/myTest
 $ head -c 2048 /dev/urandom | base64 -w 0 > enc1.key
 ```
 
-Вписать в *mount.sh* и *key.sh* место сохраненной первой части ключа, например:
+Вписать в ***mount.sh*** и ***key.sh*** место сохраненной первой части ключа, например:
 
 `export key1URL=https://gist.githubusercontent.com/foo/3894cedc3997e3acd97470c63bf9ba4a/raw/enc1.key`
 
