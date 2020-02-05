@@ -6,6 +6,10 @@
 $ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git foo-folder
 ```
 
+### Конфигурация в config.sh
+
+См. комментарии в ***cgi-bin/config.sh***
+
 ### (Необязательно) Свои символические ссылки на точки запросов
 
 As root
@@ -16,6 +20,8 @@ As root
 # mv key.sh jh4355k0398-key.sh
 # ln -s jh4355k0398-key.sh key.php
 ```
+
+Только два файла исполняемые для точек УРЛ.
 
 ### Запуск httpd
 
