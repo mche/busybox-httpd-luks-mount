@@ -20,7 +20,7 @@ As root
 ### Запуск httpd
 
 ```
-$ sudo busybox httpd -p 8080 -h /home/guest/busybox-httpd-luks-mount/
+$ sudo busybox httpd -p 8080 -h /path/to/foo-folder
 ```
 
 ###   LUKS раздел с паролем в первом слоте
