@@ -27,10 +27,11 @@ $ sudo busybox httpd -p 8080 -h /path/to/foo-folder
 
 ###  (Если еще не создан) LUKS раздел
 
-Пример:
+Пример файлового устройства:
 ```
-$ sudo cryptsetup -s 512 luksFormat <device|file>
-$ sudo cryptsetup luksOpen /home/guest/luksTest.img myTest
+$ dd if=/dev/zero of=luksTest.img bs=1M count=100
+$ sudo cryptsetup -s 512 luksFormat luksTest.img
+$ sudo cryptsetup luksOpen luksTest.img myTest
 $ sudo mkfs.ext4 -m 0  /dev/mapper/myTest
 $ sudo cryptsetup luksClose /dev/mapper/myTest
 ```
