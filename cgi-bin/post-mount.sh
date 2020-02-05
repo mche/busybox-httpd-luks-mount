@@ -1,0 +1,1 @@
+cryptsetup -v status /dev/mapper/$mapName  2>&1

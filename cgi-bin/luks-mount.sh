@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Это неисполняемый файл, не точка УРЛ
+# Этот файл можно ( и желательно ) перенести в сеть и назначить в config.sh
+# соотвествующую переменную baseURL
 
 echo -n "Открытие > > > > > "
 if [ -z $baseURL ]; then
@@ -8,7 +11,6 @@ else
 fi
 
 if [ $? -ne 0 ]; then
-  #echo " . . . . . FAIL"
   exit;
 fi
 
@@ -22,3 +24,7 @@ fi
 echo -n "Монтирование > > > > > ";
 mount | grep $mapName;
 
+if [ -f $PWD/post-mount.sh ]; then
+  echo "Послемонтирование . . .";
+  bash $PWD/post-mount.sh;
+fi

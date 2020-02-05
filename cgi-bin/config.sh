@@ -10,7 +10,7 @@ export mapName=myTest
 # export mountPoint=/home
 export mountPoint=/mnt/iso
 
-# Если нужно убрать подальше в сеть luks-key.sh и luks-mount.sh, тогда локально их удалить и раскомментировать и указать baseURL
+# Если нужно убрать подальше в сеть luks-key.sh и luks-mount.sh, тогда локально их удалить и раскомментировать и указать baseURL для них
 #export baseURL=https://raw.githubusercontent.com/mche/busybox-httpd-luks-mount/master/cgi-bin
 
 # Укаазать, где сохранена первая часть ключа
