@@ -14,7 +14,7 @@ $ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git 
 
 ### Конфигурация в config.sh
 
-См. комментарии в ***cgi-bin/config.sh***
+См. комментарии в [cgi-bin/config.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/config.sh)
 
 ### (Необязательно) Свои символические ссылки на точки запросов
 
@@ -46,7 +46,7 @@ $ sudo cryptsetup luksClose /dev/mapper/myTest
 
 ### Алгоритм комбинации/дешифрования ключа
 
-В ***cgi-bin/luks-key.sh*** представлен пример наложения двух случайных строк частей в единый ключ.
+В [cgi-bin/luks-key.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/luks-key.sh) представлен пример наложения двух случайных строк частей в единый ключ.
 Тут открываются широкие возможности для творчества масс во всевозможных алгоритмах.
 
 Далее процедуры ключа для встроенного алгоритма.
