@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if [ -z $baseURL ]; then
   bash $PWD/luks-key.sh | cryptsetup luksOpen /home/guest/luksTest.img myTest -d - 2>&1;
