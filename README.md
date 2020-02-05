@@ -18,8 +18,9 @@ $ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git 
 
 ### (Необязательно) Свои символические ссылки на точки запросов
 
-As root
+
 ```
+$ sudo su
 # cd foo-folder/cgi-bin
 # mv mount.sh jh4355k0398-mount.sh
 # ln -s jh4355k0398-mount.sh mount.php
@@ -39,6 +40,7 @@ $ sudo busybox httpd -p 8080 -h /path/to/foo-folder
 
 ###  (Если еще не создан) LUKS раздел
 
+Пример:
 ```
 $ sudo cryptsetup -s 512 luksFormat <device|file>
 $ sudo cryptsetup luksOpen /home/guest/luksTest.img myTest
@@ -63,13 +65,17 @@ $ head -c 2048 /dev/urandom | base64 -w 0 > enc1.key
 
 `export key1URL=https://gist.githubusercontent.com/foo/3894cedc3997e3acd97470c63bf9ba4a/raw/enc1.key`
 
-### Вторая часть ключа также генерируется и передается в УРЛ, получаем сборный ключ
+### Вторая часть ключа
+
+Также генерируется случайная строка и она передается с УРЛами запросов.
 
 Генерация не обязательно длинная, копипастим случайную строку и она стыкуется с первой частью в единый составной ключ
 ```
 $ head -c 512 /dev/urandom | base64 -w 0
 $ curl  'http://127.0.0.1:8080/cgi-bin/key.php?<вторая часть ключа>' > enc.key
 ```
+
+Ключ готов для внедрения в LUKS.
 
 
 ### Добавление составного ключа в LUKS устройство
@@ -78,10 +84,12 @@ $ curl  'http://127.0.0.1:8080/cgi-bin/key.php?<вторая часть ключ
 $ sudo cryptsetup luksAddKey luksTest.img enc.key
 $ shred enc.key
 ```
-Полученный файл ключа не будет использоваться, а всякий раз будут стыковаться две части из строки запроса и сетевого файла.
+Полученный файл ключа успешно внедрен и не будет использоваться. Всякий раз будут стыковаться две части из строки запроса и сетевого файла.
 
 
-### Монтирование со второй частью ключа с другого компьютера, если комп был выключен/перезагружен
+### Монтирование
+
+С другого компьютера, если сервер был выключен/перезагружен
 
 ```
 $ curl   'http://хост:8080/cgi-bin/mount.php?<вторая часть ключа>
