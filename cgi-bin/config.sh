@@ -1,4 +1,4 @@
-
+# Конфиг 
 # LUKS устройство
 #export luksDEV=/dev/md0
 export luksDEV=/home/guest/luksTest.img
