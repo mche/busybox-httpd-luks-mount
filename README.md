@@ -55,7 +55,7 @@ $ sudo cryptsetup luksClose /dev/mapper/myTest
 $ head -c 2048 /dev/urandom | base64 -w 0 > enc1.key
 ```
 
-Вписать в ***cgi-bin/config.sh*** место сохраненной первой части ключа, например:
+Вписать в [cgi-bin/config.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/config.sh) место сохраненной первой части ключа, например:
 
 `export key1URL=https://gist.githubusercontent.com/foo/3894cedc3997e3acd97470c63bf9ba4a/raw/enc1.key`
 
@@ -89,6 +89,6 @@ $ curl   'http://хост:8080/cgi-bin/mount.php?<вторая часть клю
 
 ### (Необязательно) Послемонтирование (post-mount.sh)
 
-Если прописать дополнительные команды в ***cgi-bin/post-mount.sh***, то после успешного монтирования они выполнятся.
+Если прописать дополнительные команды в [cgi-bin/post-mount.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/post-mount.sh), то после успешного монтирования они выполнятся.
 
 # Доброго всем и успехов!
