@@ -16,19 +16,6 @@ $ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git 
 
 См. комментарии в [cgi-bin/config.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/config.sh)
 
-### (Необязательно) Свои символические ссылки на точки запросов
-
-
-```
-$ sudo su
-# cd foo-folder/cgi-bin
-# mv mount.sh jh4355k0398-mount.sh
-# ln -s jh4355k0398-mount.sh mount.php
-# mv key.sh jh4355k0398-key.sh
-# ln -s jh4355k0398-key.sh key.php
-```
-
-ВНИМАНИЕ! Только два файла mount.sh и key.sh исполняемые для точек УРЛ.
 
 ### Запуск httpd
 
@@ -55,7 +42,7 @@ $ sudo cryptsetup luksClose /dev/mapper/myTest
 
 Далее процедуры ключа для встроенного алгоритма.
 
-### Сохранение первой части ключа файлом где-то в сети
+### Сохранение первой части ключа файлом где-то в сети/облаке
 
 ```
 $ head -c 2048 /dev/urandom | base64 -w 0 > enc1.key
@@ -72,7 +59,7 @@ $ head -c 2048 /dev/urandom | base64 -w 0 > enc1.key
 Генерация не обязательно длинная, копипастим случайную строку и она стыкуется с первой частью в единый составной ключ
 ```
 $ head -c 512 /dev/urandom | base64 -w 0
-$ curl  'http://127.0.0.1:8080/cgi-bin/key.php?<вторая часть ключа>' > enc.key
+$ curl  'http://127.0.0.1:8080/cgi-bin/key.sh?<вторая часть ключа>' > enc.key
 ```
 
 Ключ готов для внедрения в LUKS.
@@ -92,7 +79,7 @@ $ shred enc.key
 С другого компьютера, если сервер был выключен/перезагружен
 
 ```
-$ curl   'http://хост:8080/cgi-bin/mount.php?<вторая часть ключа>
+$ curl   'http://хост:8080/cgi-bin/mount.sh?<вторая часть ключа>
 ```
 
 Таким образом, доверенные пользователи знают этот URL и тычут в браузере когда надо.
@@ -102,5 +89,23 @@ $ curl   'http://хост:8080/cgi-bin/mount.php?<вторая часть клю
 ### (Необязательно) Послемонтирование (post-mount.sh)
 
 Если прописать дополнительные команды в [cgi-bin/post-mount.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/post-mount.sh), то после успешного монтирования они выполнятся.
+
+### (Необязательно) Свои символические ссылки на точки запросов
+
+
+```
+$ sudo su
+# cd foo-folder/cgi-bin
+# mv mount.sh jh4355k0398-mount.sh
+# ln -s jh4355k0398-mount.sh mount.php
+# mv key.sh jh4355k0398-key.sh
+# ln -s jh4355k0398-key.sh key.php
+```
+
+Соответственно изменятся УРЛы http-запросов
+
+`http://хост:8080/cgi-bin/key.php?<вторая часть ключа>` и `http://хост:8080/cgi-bin/mount.php?<вторая часть ключа>`
+
+ВНИМАНИЕ! Только два файла mount.sh и key.sh исполняемые для точек УРЛ.
 
 # Доброго всем и успехов!
