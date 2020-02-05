@@ -4,7 +4,7 @@
 
 Будет использоваться составной ключ.
 
-### Клонирование
+### Клонирование этой репы
 
 ```
 $ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git foo-folder
