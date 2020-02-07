@@ -23,7 +23,7 @@ $ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git 
 $ sudo busybox httpd -p 8080 -h /path/to/foo-folder
 ```
 
-Более продвинутый вариант с uWSGI (ниже).
+Более продвинутый вариант с uWSGI см. ниже.
 
 ###  (Если еще не создан) LUKS раздел
 
@@ -131,13 +131,13 @@ $ sudo su
 Запуск 
 
 ```
-./uwsgi -b 32768 --http-socket 0.0.0.0:8080 --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --http-socket-modifier1 9
+./uwsgi -b 32768 --http-socket 0.0.0.0:8080 --plugins cgi --cgi /path/to/foo-folder/cgi-bin/ --http-socket-modifier1 9
 ```
 
 HTTPS
 
 ```
-./uwsgi -b 32768 --https-socket 0.0.0.0:8443,foobar.crt,foobar.key --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --https-socket-modifier1 9
+./uwsgi -b 32768 --https-socket 0.0.0.0:8443,foobar.crt,foobar.key --plugins cgi --cgi /path/to/foo-folder/cgi-bin/ --https-socket-modifier1 9
 ```
 
 
