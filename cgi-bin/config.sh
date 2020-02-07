@@ -4,6 +4,7 @@
 export luksDEV=/home/guest/luksTest.img
 
 # Map to name /dev/mapper/myTest
+#export mapName=encHome
 export mapName=myTest
 
 # Точка монтирования

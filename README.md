@@ -23,7 +23,7 @@ $ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git 
 $ sudo busybox httpd -p 8080 -h /path/to/foo-folder
 ```
 
-Увы, пока без заморочек с рутовскими привилегиями, может переделаю.
+Более продвинутый вариант с uWSGI (ниже).
 
 ###  (Если еще не создан) LUKS раздел
 
@@ -115,5 +115,31 @@ $ sudo su
 `http://хост:8080/cgi-bin/key.php?<вторая часть ключа>` и `http://хост:8080/cgi-bin/mount.php?<вторая часть ключа>`
 
 ВНИМАНИЕ! Только два файла mount.sh и key.sh исполняемые для точек http-запросов. Неисполняемые файлы будут 404 не найдены.
+
+### Продвинутый вариант с uWSGI
+
+Нужно врубить плугин CGI
+
+```
+# wget https://projects.unbit.it/downloads/uwsgi-2.0.18.tar.gz
+# tar -xvzf uwsgi-2.0.18.tar.gz 
+# cd uwsgi-2.0.18
+# python uwsgiconfig.py --build core
+# python uwsgiconfig.py --plugin plugins/cgi core
+```
+
+Запуск 
+
+`./uwsgi -b 32768 --http-socket 0.0.0.0:8080 --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --http-socket-modifier1 9`
+
+HTTPS
+
+`./uwsgi -b 32768 --https-socket 0.0.0.0:8443,foobar.crt,foobar.key --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --https-socket-modifier1 9`
+
+
+Запросы без cgi-bin:
+
+`curl -vv -L 'https://хвост:8443/key...' `
+
 
 # Доброго всем и успехов!
