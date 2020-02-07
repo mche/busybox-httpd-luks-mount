@@ -9,12 +9,12 @@
 ### Клонирование этой репы
 
 ```
-$ sudo git clone --depth=1 https://github.com/mche/busybox-httpd-luks-mount.git foo-folder
+$ sudo git clone --depth=1 https://github.com/mche/httpd-luks-mount.git foo-folder
 ```
 
 ### Конфигурация в config.sh
 
-См. комментарии в [cgi-bin/config.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/config.sh)
+См. комментарии в [cgi-bin/config.sh](https://github.com/mche/httpd-luks-mount/tree/master/cgi-bin/config.sh)
 
 
 ### Запуск httpd
@@ -38,7 +38,7 @@ $ sudo cryptsetup luksClose /dev/mapper/myTest
 
 ### Алгоритм комбинации/дешифрования ключа
 
-В [cgi-bin/luks-key.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/luks-key.sh) представлен пример наложения двух случайных строк частей в единый ключ.
+В [cgi-bin/luks-key.sh](https://github.com/mche/httpd-luks-mount/tree/master/cgi-bin/luks-key.sh) представлен пример наложения двух случайных строк частей в единый ключ.
 Тут открываются широкие возможности для творчества масс во всевозможных алгоритмах.
 
 Далее процедуры ключа для встроенного алгоритма.
@@ -49,7 +49,7 @@ $ sudo cryptsetup luksClose /dev/mapper/myTest
 $ head -c 2048 /dev/urandom | base64 -w 0 > enc1.key
 ```
 
-Вписать в [cgi-bin/config.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/config.sh) место сохраненной первой части ключа, например:
+Вписать в [cgi-bin/config.sh](https://github.com/mche/httpd-luks-mount/tree/master/cgi-bin/config.sh) место сохраненной первой части ключа, например:
 
 `export key1URL=https://gist.githubusercontent.com/foo/3894cedc3997e3acd97470c63bf9ba4a/raw/enc1.key`
 
@@ -96,7 +96,7 @@ $ curl  'http://хост:8080/cgi-bin/mount.sh?<вторая часть ключ
 
 ### (Необязательно) Послемонтирование (post-mount.sh)
 
-Если прописать дополнительные команды в [cgi-bin/post-mount.sh](https://github.com/mche/busybox-httpd-luks-mount/tree/master/cgi-bin/post-mount.sh), то после успешного монтирования они выполнятся.
+Если прописать дополнительные команды в [cgi-bin/post-mount.sh](https://github.com/mche/httpd-luks-mount/tree/master/cgi-bin/post-mount.sh), то после успешного монтирования они выполнятся.
 
 ### (Необязательно) Свои символические ссылки на точки запросов
 
