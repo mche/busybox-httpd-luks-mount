@@ -130,16 +130,22 @@ $ sudo su
 
 Запуск 
 
-```./uwsgi -b 32768 --http-socket 0.0.0.0:8080 --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --http-socket-modifier1 9```
+```
+./uwsgi -b 32768 --http-socket 0.0.0.0:8080 --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --http-socket-modifier1 9
+```
 
 HTTPS
 
-```./uwsgi -b 32768 --https-socket 0.0.0.0:8443,foobar.crt,foobar.key --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --https-socket-modifier1 9```
+```
+./uwsgi -b 32768 --https-socket 0.0.0.0:8443,foobar.crt,foobar.key --plugins cgi --cgi /home/guest/busybox-httpd/cgi-bin/ --https-socket-modifier1 9
+```
 
 
 Запросы без cgi-bin:
 
-```curl -vv -L 'https://хвост:8443/key...' ```
+```
+curl -vv -L 'https://хвост:8443/key...' 
+```
 
 
 # Доброго всем и успехов!
